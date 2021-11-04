@@ -1,0 +1,18 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: eureka-server
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    #是否在注册中心注册自己
+    register-with-eureka: false
+    #是否从 eureka 获取注册信息
+    fetch-registry: false
+    #配置注册中心的url (注意:地址最后面的 /eureka/ 这个是固定值)服务注册也就依赖这个url，后续我们会用到
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/

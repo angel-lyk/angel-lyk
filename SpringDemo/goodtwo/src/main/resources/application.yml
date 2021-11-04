@@ -1,0 +1,25 @@
+server:
+  port: 8084
+
+eureka:
+  instance:
+    #心跳时间，即服务续约间隔时间（默认为30s）
+    lease-expiration-duration-in-seconds: 15
+    #发呆时间，即服务续约到期时间（默认为90s）
+    lease-renewal-interval-in-seconds: 5
+    instance-id: localhost:${server.port}
+    prefer-ip-address: true
+    status-page-url: http://${eureka.instance.hostname}:${server.port}/good/hello
+    hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8080/eureka/
+    #开启健康检查(依赖spring-boot-starter-actuator)
+    healthcheck:
+      enabled: true
+    #拉取服务注册信息间隔（默认为30s）
+    registry-fetch-interval-seconds: 10
+
+spring:
+  application:
+    name: good
